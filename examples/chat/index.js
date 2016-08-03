@@ -32,14 +32,7 @@ io.on('connection', function (socket) {
   // when the client emits 'add user', this listens and executes
   socket.on('add_device', function (device_id) {
     console.log("added device");
-=======
 
-
-  // when the client emits 'add user', this listens and executes
-  socket.on('add device', function (device_id) {
-    if (addedUser) return;
-
->>>>>>> 1c30cf7e4245fd10d850232975ffdf766f2f2b75
     // we store the  device_id in the socket session for this client
     socket.device_id = device_id;
     ++numDevices;
@@ -59,11 +52,6 @@ io.on('connection', function (socket) {
     });
   });
 
-<<<<<<< HEAD
-    // turn device off
-=======
-    // when the client emits 'typing', we broadcast it to others
->>>>>>> 1c30cf7e4245fd10d850232975ffdf766f2f2b75
   socket.on('off', function (device_id) {
      socket.broadcast.emit('off', {
       device_id: socket.device_id,
