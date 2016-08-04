@@ -1,3 +1,28 @@
+$( document ).ready(function() {
+  // Handler for .ready() called.
+  $("#in").hide();
+  $("#in2").hide();
+  $("#second").hide();
+  $("#in3").hide();
+  $("#in4").hide();
+
+  $("#in3").css("color","#000");
+  $("#in4").css("border-bottom","2px solid #000");
+  $("#in").css("color","#000");
+  $("#in2").css("border-bottom","2px solid #000");
+  $("#second").css("color","#000");
+
+
+  $( "#first" ).delay( 800 ).fadeOut( 400 );
+  $( "#second" ).delay(1200).fadeIn( 400 );
+  $( "#second" ).delay(1300).fadeOut( 200 );
+  $( "#in" ).delay(3100).fadeIn( 800 );
+  $( "#in2" ).delay(3100).fadeIn( 800 );
+  $("#in2").focus();
+});
+
+
+
 $(function() {
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
@@ -10,6 +35,7 @@ $(function() {
   // Initialize variables
   var $window = $(window);
   var $usernameInput = $('.usernameInput'); // Input for username
+  var $passwordInput = $('.passwordInput');
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
 
@@ -35,16 +61,30 @@ $(function() {
     log(message);
   }
 
+
+  function showDashboard()
+  {
+     $loginPage.fadeOut();
+     $chatPage.show();
+     $loginPage.off('click');
+  }
+  //showDashboard();
+
   // Sets the client's username
   function setUsername () {
     username = cleanInput($usernameInput.val().trim());
 
     // If the username is valid
     if (username) {
-      $loginPage.fadeOut();
-      $chatPage.show();
-      $loginPage.off('click');
-      $currentInput = $inputMessage.focus();
+      $( "#in" ).delay(0).fadeOut( 800 );
+      $( "#in2" ).delay(0).fadeOut( 800 );
+      $( "#in3" ).delay(900).fadeIn( 800 );
+      $( "#in4" ).delay(900).fadeIn( 800 );
+
+      //$loginPage.fadeOut();
+      //$chatPage.show();
+      //$loginPage.off('click');
+      //$currentInput = $inputMessage.focus();
 
       // Tell the server your username
       socket.emit('add user', username);
@@ -169,6 +209,12 @@ $(function() {
     }
   }
 
+
+  $("#lightBTN").click(function() {
+     socket.emit('on');
+     console.log("btn clicked");
+  });
+
   // Gets the 'X is typing' messages of a user
   function getTypingMessages (data) {
     return $('.typing.message').filter(function (i) {
@@ -189,7 +235,6 @@ $(function() {
   }
 
   // Keyboard events
-
   $window.keydown(function (event) {
     // Auto-focus the current input when a key is typed
     if (!(event.ctrlKey || event.metaKey || event.altKey)) {

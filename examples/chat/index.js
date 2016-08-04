@@ -46,6 +46,7 @@ io.on('connection', function (socket) {
 
   // when the client emits 'typing', we broadcast it to others
   socket.on('on', function (device_id) {
+    console.log("Recieved On command");
     socket.broadcast.emit('on', {
       device_id: socket.device_id,
     });
