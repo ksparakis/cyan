@@ -1,0 +1,11 @@
+#this is to be an install script for the server
+
+#npm install all dependecies
+
+#setup mongo database
+
+#setup admin user
+
+#setup ssl certificates
+
+#DONE
